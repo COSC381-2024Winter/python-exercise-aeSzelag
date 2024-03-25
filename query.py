@@ -17,6 +17,7 @@ movies = Movies('./movies.txt')
 def menu_options():
     print("Please choose an option:")
     print("\'list\' to display a list of movies in the database")
+    print("\'name\' to search movie names in the database")
     print("\'q\' for exit")
 
 #method for displaying the movie dictionary
@@ -24,6 +25,16 @@ def list_movies():
     print("Movie List:")
     for row_idx, movie_name in enumerate(movies._movies, start=1):
         print(f"{row_idx}. {movie_name['name']}")
+
+def search_movies_name(search_term):
+    found_movies = [movie['name'] for movie in movies._movies if search_term.lower() in movie['name'].lower()]
+
+    if found_movies:
+        print("Movies found:")
+        for movie in found_movies:
+            print(movie)
+    else:
+        print("No movies found with that search term.")
 
 #process user input through the menu system
 def menu_selection():
@@ -35,6 +46,9 @@ def menu_selection():
             break
         elif option == 'list':
             list_movies()
+        elif option == 'name':
+            search_term = input("What movie name do you want to find? ")
+            search_movies_name(search_term)
         else:
             print("invalid option")
 
