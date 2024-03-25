@@ -8,8 +8,6 @@ movies = Movies('./movies.txt')
 
 
 
-
-
         
 
 
@@ -21,7 +19,9 @@ def menu_options():
 
 #method for displaying the movie dictionary
 def list_movies():
-    print("here")
+    print("Movie List:")
+    for row_idx, movie_name in enumerate(movies._movies, start=1):
+        print(f"{row_idx}. {movie_name['name']}")
 
 #process user input through the menu system
 def menu_selection():
@@ -39,3 +39,4 @@ def menu_selection():
 
 if __name__ == "__main__":
     menu_selection()
+
